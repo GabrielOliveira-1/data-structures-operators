@@ -37,46 +37,113 @@ const restaurant = {
       `Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
     );
   },
+
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(`Here is your pasta with ${ing1}, ${ing2} and ${ing3}`);
+  },
 };
 
-restaurant.orderDelivery({
-  time: '22:30',
-  address: 'Via del Sole, 21',
-  mainIndex: 2,
-  starterIndex: 2,
-});
+// Spread Operator
+const arr = [7, 8, 9];
+const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
+console.log(badNewArr);
 
-restaurant.orderDelivery({
-  address: 'Via del Sole, 21',
-  starterIndex: 1,
-});
+const newArr = [1, 2, ...arr];
+console.log(newArr);
 
-const { restName, openingHours, categories } = restaurant;
-console.log(restName, openingHours, categories);
+console.log(...newArr);
+console.log(1, 2, 7, 8, 9);
 
-const {
-  restName: restaurantName,
-  openingHours: hours,
-  categories: tags,
-} = restaurant;
-console.log(restaurantName, hours, tags);
+const newMenu = [...restaurant.mainMenu, 'Gnocchi'];
+console.log(newMenu);
 
-// Default Values
-const { menu = [], starterMenu: starters = [] } = restaurant; // menu = [] is called a 'default value'
-console.log(menu, starters);
+// Copy array
+const mainMenuCopy = [...restaurant.mainMenu];
 
-// Mutating variables
-let a = 111;
-let b = 999;
-const obj = { a: 23, b: 7, c: 14 };
-({ a, b } = obj);
-console.log(a, b);
+// Join 2 arrays
+const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+console.log(menu);
 
-// Nested Objects
-const {
-  fri: { open: o, close: c },
-} = openingHours;
-console.log(o, c);
+const str = 'Gabriel';
+const letters = [...str, ' ', 'O.'];
+console.log(letters);
+
+// const ingredients = [
+//   prompt("let's make pasta! Ingredient 1"),
+//   prompt('Ingredient 2'),
+//   prompt('Ingredient 3'),
+// ];
+// console.log(ingredients);
+
+// restaurant.orderPasta(...ingredients);
+
+// Objects
+
+const newRestaurant = { foundedIn: 1998, ...restaurant, founder: 'Giuseppe' };
+console.log(newRestaurant);
+
+const restaurantCopy = { ...restaurant };
+restaurantCopy.restName = 'Ristorante Roma';
+console.log(restaurantCopy.restName);
+console.log(restaurant.restName);
+
+/*
+
+Spread operator is useful for when we need the elements individually
+
+Spread operator is a bit similar to destructuring, however, it takes elements from array and doesn't create new variables, so we can only use it in places where we would otherwise write values separated by commas.
+
+Spread operator is good to create shallow copies of arrays, and to merge two arrays together.
+
+Spread operator works in all iterables (arrays, strings, maps, sets) but not objects.
+
+We can still only use the spread operator when building an array, or when we pass values into a function
+
+It is not possible, for example, to use the spread operator inside a template literal, because multiple values separated by a comma are usually only expected when we pass arguments into a function or when we build a new array.
+
+Since ES 2018, spread operator also works with objects!!!
+
+*/
+
+// // Destructuring Objects
+// restaurant.orderDelivery({
+//   time: '22:30',
+//   address: 'Via del Sole, 21',
+//   mainIndex: 2,
+//   starterIndex: 2,
+// });
+
+// restaurant.orderDelivery({
+//   address: 'Via del Sole, 21',
+//   starterIndex: 1,
+// });
+
+// const { restName, openingHours, categories } = restaurant;
+// console.log(restName, openingHours, categories);
+
+// const {
+//   restName: restaurantName,
+//   openingHours: hours,
+//   categories: tags,
+// } = restaurant;
+// console.log(restaurantName, hours, tags);
+
+// // Default Values
+// const { menu = [], starterMenu: starters = [] } = restaurant; // menu = [] is called a 'default value'
+// console.log(menu, starters);
+
+// // Mutating variables
+// let a = 111;
+// let b = 999;
+// const obj = { a: 23, b: 7, c: 14 };
+// ({ a, b } = obj);
+// console.log(a, b);
+
+// // Nested Objects
+// const {
+//   fri: { open: o, close: c },
+// } = openingHours;
+// console.log(o, c);
 
 /*
 
@@ -130,3 +197,5 @@ Default value is useful when we do not have data hard-coded
 // The original array is not affected
 
 // */
+
+///////////////////////
