@@ -41,32 +41,90 @@ const restaurant = {
   orderPasta: function (ing1, ing2, ing3) {
     console.log(`Here is your pasta with ${ing1}, ${ing2} and ${ing3}`);
   },
+
+  orderPizza: function (mainIngredient, ...otherIngredients) {
+    console.log(mainIngredient);
+    console.log(otherIngredients);
+  },
 };
 
-// Spread Operator
-const arr = [7, 8, 9];
-const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
-console.log(badNewArr);
+// 1) Destructuring
 
-const newArr = [1, 2, ...arr];
-console.log(newArr);
+// SPREAD, because on the RIGHT side of = operator
+const arr = [1, 2, ...[3, 4]];
 
-console.log(...newArr);
-console.log(1, 2, 7, 8, 9);
+// REST, because on LEFT side of = operator
+const [a, b, ...others] = [1, 2, 3, 4, 5];
+console.log(a, b, others);
 
-const newMenu = [...restaurant.mainMenu, 'Gnocchi'];
-console.log(newMenu);
+const [pizza, , risotto, ...otherFood] = [
+  ...restaurant.mainMenu,
+  ...restaurant.starterMenu,
+];
+console.log(pizza, risotto, otherFood);
 
-// Copy array
-const mainMenuCopy = [...restaurant.mainMenu];
+// Objects
+const { sat, ...weekdays } = restaurant.openingHours;
+console.log(weekdays);
 
-// Join 2 arrays
-const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
-console.log(menu);
+// 2) Functions
+const add = function (...numbers) {
+  let sum = 0;
+  for (let i = 0; i < numbers.length; i++) {
+    sum += numbers[i];
+  }
+  console.log(sum);
+};
+add(2, 3);
+add(5, 7, 3, 7);
+add(6, 3, 1, 5, 7, 9, 8);
 
-const str = 'Gabriel';
-const letters = [...str, ' ', 'O.'];
-console.log(letters);
+const x = [23, 5, 7];
+add(...x);
+
+restaurant.orderPizza('mushrooms', 'onion', 'olives', 'spinach');
+restaurant.orderPizza('mushrooms');
+
+/*
+
+Rest is used to pack elements into an array, the patterns basically colects the patterns that are unused in the destructuring assignment
+
+Rest pattern always must be the last of the ddestructuring assignment, otherwise Js would never know until when it should collect the rest of the array
+
+And there only be one rest in any destructuring assignment
+
+So with the spread operator we expand, and with the rest operator we compress
+
+Spread operator is used where we would otherwise write values separated by commas
+
+Rest patterns is used where we would otherwise write variable names separated by commas
+
+*/
+
+// // Spread Operator
+// const arr = [7, 8, 9];
+// const badNewArr = [1, 2, arr[0], arr[1], arr[2]];
+// console.log(badNewArr);
+
+// const newArr = [1, 2, ...arr];
+// console.log(newArr);
+
+// console.log(...newArr);
+// console.log(1, 2, 7, 8, 9);
+
+// const newMenu = [...restaurant.mainMenu, 'Gnocchi'];
+// console.log(newMenu);
+
+// // Copy array
+// const mainMenuCopy = [...restaurant.mainMenu];
+
+// // Join 2 arrays
+// const menu = [...restaurant.starterMenu, ...restaurant.mainMenu];
+// console.log(menu);
+
+// const str = 'Gabriel';
+// const letters = [...str, ' ', 'O.'];
+// console.log(letters);
 
 // const ingredients = [
 //   prompt("let's make pasta! Ingredient 1"),
@@ -79,13 +137,13 @@ console.log(letters);
 
 // Objects
 
-const newRestaurant = { foundedIn: 1998, ...restaurant, founder: 'Giuseppe' };
-console.log(newRestaurant);
+// const newRestaurant = { foundedIn: 1998, ...restaurant, founder: 'Giuseppe' };
+// console.log(newRestaurant);
 
-const restaurantCopy = { ...restaurant };
-restaurantCopy.restName = 'Ristorante Roma';
-console.log(restaurantCopy.restName);
-console.log(restaurant.restName);
+// const restaurantCopy = { ...restaurant };
+// restaurantCopy.restName = 'Ristorante Roma';
+// console.log(restaurantCopy.restName);
+// console.log(restaurant.restName);
 
 /*
 
