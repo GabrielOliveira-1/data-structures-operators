@@ -48,42 +48,85 @@ const restaurant = {
   },
 };
 
+console.log('---- OR ----');
+// Use any data type, return any data type, short-circuiting
+
+// Short circuiting is -> if the first value is a truthy value, it will return it
+console.log(3 || 'Gabriel');
+console.log('' || 'Gabriel');
+console.log(true || 0);
+console.log(undefined || null);
+
+console.log(undefined || 0 || 'Hello' || 23 || null);
+
+restaurant.numGuests = 58;
+const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+console.log(guests1);
+const guests2 = restaurant.numGuests || 10;
+console.log(guests2);
+
+console.log('---- AND ----');
+console.log(0 && 'Gabriel');
+console.log(1 && 'Gabriel');
+
+console.log('Hello' && 23 && null && 'Gabriel');
+
+// Practice
+if (restaurant.orderPizza) {
+  restaurant.orderPizza('mushrooms', 'spinach');
+}
+
+restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
+
+/*
+
+The OR operator will return the first truthy value of all the operands, OR simply the last value if all of them are falsy.
+
+The AND operator will return the first falsy value or the last value if all of them are truthy.
+
+For practical applications
+We can use the OR operator to set default values and we can use the AND operator to execute code in the second operand if the first one is true.
+
+*/
+
+////////////////////////////////
+// Rest pattern and parameters
 // 1) Destructuring
 
-// SPREAD, because on the RIGHT side of = operator
-const arr = [1, 2, ...[3, 4]];
+// // SPREAD, because on the RIGHT side of = operator
+// const arr = [1, 2, ...[3, 4]];
 
-// REST, because on LEFT side of = operator
-const [a, b, ...others] = [1, 2, 3, 4, 5];
-console.log(a, b, others);
+// // REST, because on LEFT side of = operator
+// const [a, b, ...others] = [1, 2, 3, 4, 5];
+// console.log(a, b, others);
 
-const [pizza, , risotto, ...otherFood] = [
-  ...restaurant.mainMenu,
-  ...restaurant.starterMenu,
-];
-console.log(pizza, risotto, otherFood);
+// const [pizza, , risotto, ...otherFood] = [
+//   ...restaurant.mainMenu,
+//   ...restaurant.starterMenu,
+// ];
+// console.log(pizza, risotto, otherFood);
 
-// Objects
-const { sat, ...weekdays } = restaurant.openingHours;
-console.log(weekdays);
+// // Objects
+// const { sat, ...weekdays } = restaurant.openingHours;
+// console.log(weekdays);
 
-// 2) Functions
-const add = function (...numbers) {
-  let sum = 0;
-  for (let i = 0; i < numbers.length; i++) {
-    sum += numbers[i];
-  }
-  console.log(sum);
-};
-add(2, 3);
-add(5, 7, 3, 7);
-add(6, 3, 1, 5, 7, 9, 8);
+// // 2) Functions
+// const add = function (...numbers) {
+//   let sum = 0;
+//   for (let i = 0; i < numbers.length; i++) {
+//     sum += numbers[i];
+//   }
+//   console.log(sum);
+// };
+// add(2, 3);
+// add(5, 7, 3, 7);
+// add(6, 3, 1, 5, 7, 9, 8);
 
-const x = [23, 5, 7];
-add(...x);
+// const x = [23, 5, 7];
+// add(...x);
 
-restaurant.orderPizza('mushrooms', 'onion', 'olives', 'spinach');
-restaurant.orderPizza('mushrooms');
+// restaurant.orderPizza('mushrooms', 'onion', 'olives', 'spinach');
+// restaurant.orderPizza('mushrooms');
 
 /*
 
